@@ -1,3 +1,7 @@
+<p align="center">
+    <img src="assets/TinkerBin-no-bg.png" width="300" title="TinkerBin Logo">
+</p>
+
 # Tinkerbin
 
 A collection of utility tools for scientific computing and data analysis, designed to streamline numerical simulations, data processing, and visualization workflows.
@@ -242,8 +246,3 @@ Contributions are welcome! Please feel free to submit pull requests or open issu
 ---
 
 *Tinkerbin is designed for researchers and scientists who need reliable, efficient tools for numerical simulations and data analysis workflows.*
-
-
-<p align="center">
-    <img src="assets/TinkerBin-no-bg.png" width="300" title="TinkerBin Logo">
-</p>
