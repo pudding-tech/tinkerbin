@@ -15,10 +15,9 @@ jobs:
       with:
         fetch-depth: 0  # Needed for setuptools-scm to work properly
 
-    - name: Set up Python 3.8
-      uses: actions/setup-python@v4
+    - uses: actions/setup-python@v4
       with:
-        python-version: "3.8"
+        python-version: "3.x"
 
     - name: Install dependencies
       run: |
