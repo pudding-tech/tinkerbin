@@ -15,6 +15,16 @@ This package provides tools for:
 - IPython integration
 """
 
+try:
+    from ._version import version as __version__
+except ImportError:
+    # Fallback for development installations
+    try:
+        from importlib.metadata import version
+        __version__ = version("tinkerbin")
+    except ImportError:
+        __version__ = "unknown"
+
 # Import all public functions and classes from each module
 from .numpy_tools import *
 from .numerics_tools import *
@@ -29,7 +39,3 @@ from .parameter_store import *
 from .dictionaries import *
 from .function_evaluation import *
 from .ipython import *
-
-# Version info
-__version__: str = "1.0.0"
-__author__: str = "Jan Gulla"
