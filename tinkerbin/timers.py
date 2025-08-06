@@ -35,10 +35,10 @@ def print_timing() -> None:
     global _start_time
 
     if _start_time is None:
-        raise Exception("Attempted to find elapsed time, but start time was not set.")
+        raise Exception('Attempted to find elapsed time, but start time was not set.')
 
     end_time = datetime.now()
-    log(f"Elapsed time: {end_time - _start_time}.")
+    log(f'Elapsed time: {end_time - _start_time}.')
 
 
 def get_local_datetime() -> str:
@@ -48,7 +48,7 @@ def get_local_datetime() -> str:
     Returns:
         Formatted datetime string in local timezone with UTC offset
     """
-    time_format = "%Y-%m-%d %H:%M:%S UTC%z(%Z)"
+    time_format = '%Y-%m-%d %H:%M:%S UTC%z(%Z)'
     string = datetime.now().astimezone().strftime(time_format)
     return string
 
@@ -60,6 +60,6 @@ def get_utc_datetime() -> str:
     Returns:
         Formatted datetime string in UTC timezone
     """
-    time_format = "%Y-%m-%d %H:%M:%S UTC"
+    time_format = '%Y-%m-%d %H:%M:%S UTC'
     string = datetime.utcnow().strftime(time_format)
     return string

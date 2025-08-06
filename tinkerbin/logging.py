@@ -28,21 +28,21 @@ _log_file_has_started: bool = (
 
 # Log controller.
 loggers: dict[str, dict[str, Union[bool, Callable]]] = {
-    "local_file": {
-        "active": False,  # Default=False.
-        "err": lambda message: _log_file_write(
-            log_file_name_dic["err"],
-            prepend_string_lines(get_local_datetime() + ": Error: ", message),
+    'local_file': {
+        'active': False,  # Default=False.
+        'err': lambda message: _log_file_write(
+            log_file_name_dic['err'],
+            prepend_string_lines(get_local_datetime() + ': Error: ', message),
         ),
-        "inf": lambda message="": _log_file_write(
-            log_file_name_dic["inf"],
-            prepend_string_lines(get_local_datetime() + ": ", message),
+        'inf': lambda message='': _log_file_write(
+            log_file_name_dic['inf'],
+            prepend_string_lines(get_local_datetime() + ': ', message),
         ),
     },
-    "local_print": {
-        "active": True,  # Default=True.
-        "err": lambda message: print(f"Error: {message}"),
-        "inf": lambda message="": print(f"{message}"),
+    'local_print': {
+        'active': True,  # Default=True.
+        'err': lambda message: print(f'Error: {message}'),
+        'inf': lambda message='': print(f'{message}'),
     },
 }
 
@@ -62,21 +62,21 @@ def log(*args: Any, str_func: Callable[[Any], str] = lambda item: str(item)) -> 
         Exception: If more than 2 arguments are provided
     """
     if len(args) == 0:
-        priority = "inf"
+        priority = 'inf'
         item = None
     elif len(args) == 1:
-        priority = "inf"
+        priority = 'inf'
         item = args[0]
     elif len(args) == 2:
         priority = args[0]
         item = args[1]
     else:
         raise Exception(
-            f"Function <log> takes 0-2 argument, but {len(args)} arguments were given."
+            f'Function <log> takes 0-2 argument, but {len(args)} arguments were given.'
         )
 
     for logger in loggers:
-        if priority in loggers[logger] and loggers[logger]["active"]:
+        if priority in loggers[logger] and loggers[logger]['active']:
             if item is None:
                 loggers[logger][priority]()
             else:
@@ -90,7 +90,7 @@ def log_dic_lines(*args: Any) -> None:
     Args:
         *args: Arguments passed to log function, where dictionary should be the last argument
     """
-    str_func = lambda dic: "\n".join(f"{key}: {value}" for key, value in dic.items())
+    str_func = lambda dic: '\n'.join(f'{key}: {value}' for key, value in dic.items())
     log(*args, str_func=str_func)
 
 
@@ -118,13 +118,13 @@ def setup_file_logging(
     if isinstance(log_file_names, dict):
         log_file_name_dic = log_file_names.copy()
     else:
-        log_file_name_dic = {"err": log_file_names, "inf": log_file_names}
+        log_file_name_dic = {'err': log_file_names, 'inf': log_file_names}
 
     append_to_log_files = append_to_existing
-    loggers["local_file"]["active"] = enable_local_file_logging
+    loggers['local_file']['active'] = enable_local_file_logging
 
-    info_filename = log_file_name_dic.get("inf", list(log_file_name_dic.values())[0])
-    log(f"Logging enabled to log file: <{log_file_folder}/{info_filename}>.")
+    info_filename = log_file_name_dic.get('inf', list(log_file_name_dic.values())[0])
+    log(f'Logging enabled to log file: <{log_file_folder}/{info_filename}>.')
 
 
 def _log_file_write(log_file_name: str, string: str) -> None:
@@ -143,29 +143,29 @@ def _log_file_write(log_file_name: str, string: str) -> None:
     global _log_file_has_started, log_file_name_dic
 
     if log_file_folder is None:
-        raise Exception("Logging to file enabled, but log file folder not set.")
+        raise Exception('Logging to file enabled, but log file folder not set.')
     if log_file_name_dic is None:
-        raise Exception("Logging to file enabled, but log file names not set.")
+        raise Exception('Logging to file enabled, but log file names not set.')
 
     log_file_path = os.path.join(log_file_folder, log_file_name)
 
     if not _log_file_has_started:
         # Make folder(s) if necessary
         if not Path(log_file_folder).is_dir():
-            activated = loggers["local_file"]["active"]
-            loggers["local_file"]["active"] = False
+            activated = loggers['local_file']['active']
+            loggers['local_file']['active'] = False
             make_folders([log_file_folder], print_nl=False)
-            loggers["local_file"]["active"] = activated
+            loggers['local_file']['active'] = activated
 
         if append_to_log_files:
-            with open(log_file_path, "a") as out_file:
+            with open(log_file_path, 'a') as out_file:
                 print(string, file=out_file)
         else:
-            with open(log_file_path, "w") as out_file:
+            with open(log_file_path, 'w') as out_file:
                 print(string, file=out_file)
 
         _log_file_has_started = True
 
     else:
-        with open(log_file_path, "a") as out_file:
+        with open(log_file_path, 'a') as out_file:
             print(string, file=out_file)

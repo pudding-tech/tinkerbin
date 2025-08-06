@@ -50,7 +50,7 @@ def bump_func_func(x_onset: float) -> Callable[[np.ndarray], np.ndarray]:
 ################################### Numerical integration ######################
 
 
-class Discretization(AttrClass, internal_attrs=["var_name"]):
+class Discretization(AttrClass, internal_attrs=['var_name']):
     """
     Discretization class for numerical computations.
 
@@ -76,7 +76,7 @@ class Discretization(AttrClass, internal_attrs=["var_name"]):
         dx: float,
         x_0pos: float,
         x_0neg: float,
-        var_name: str = "x",
+        var_name: str = 'x',
     ) -> None:
         """
         Initialize discretization.
@@ -111,10 +111,10 @@ class Discretization(AttrClass, internal_attrs=["var_name"]):
         """
         param_dic = {}
         for attr_name, attr_val in self.to_dic().items():
-            if attr_name != "x_lin":
-                sub_attr_name = attr_name.replace("x_", self.var_name + "_")
-                sub_attr_name = sub_attr_name.replace("_x", "_" + self.var_name)
-                sub_attr_name = sub_attr_name.replace("dx", "d" + self.var_name)
+            if attr_name != 'x_lin':
+                sub_attr_name = attr_name.replace('x_', self.var_name + '_')
+                sub_attr_name = sub_attr_name.replace('_x', '_' + self.var_name)
+                sub_attr_name = sub_attr_name.replace('dx', 'd' + self.var_name)
                 param_dic[sub_attr_name] = attr_val
         return param_dic
 
@@ -346,7 +346,7 @@ def fft(
         else:
             f_shift_lin = np.fft.fftshift(f_lin)
     F_shift_lin = np.sqrt(dt / dw) * np.fft.ifft(
-        f_shift_lin, norm="ortho"
+        f_shift_lin, norm='ortho'
     )  # sqrt(dt / dw) for normalization.
     F_lin = np.fft.ifftshift(F_shift_lin)
     return F_lin
@@ -387,7 +387,7 @@ def ifft(
         else:
             F_shift_lin = np.fft.fftshift(F_lin)
     f_shift_lin = np.sqrt(dw / dt) * np.fft.fft(
-        F_shift_lin, norm="ortho"
+        F_shift_lin, norm='ortho'
     )  # sqrt(dw / dt) for normalization.
     f_lin = np.fft.ifftshift(f_shift_lin)
     return f_lin

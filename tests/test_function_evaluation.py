@@ -69,37 +69,37 @@ class TestFunctionEvaluation(unittest.TestCase):
 
     def test_standalone_functions(self):
         """Test get_func_args on standalone functions."""
-        self.assertEqual(set(get_func_args(self.f1)), set(["x", "y"]))
-        self.assertEqual(set(get_func_args(self.f2)), set(["x", "y", "z"]))
-        self.assertEqual(set(get_func_args(self.f3)), set(["x", "y"]))
-        self.assertEqual(set(get_func_args(self.f4)), set(["x", "y"]))
+        self.assertEqual(set(get_func_args(self.f1)), set(['x', 'y']))
+        self.assertEqual(set(get_func_args(self.f2)), set(['x', 'y', 'z']))
+        self.assertEqual(set(get_func_args(self.f3)), set(['x', 'y']))
+        self.assertEqual(set(get_func_args(self.f4)), set(['x', 'y']))
 
     def test_class_lambda_functions(self):
         """Test get_func_args on class lambda functions."""
-        self.assertEqual(set(get_func_args(self.A.fA1)), set(["x", "y"]))
-        self.assertEqual(set(get_func_args(self.A.fA2)), set(["x", "y"]))
+        self.assertEqual(set(get_func_args(self.A.fA1)), set(['x', 'y']))
+        self.assertEqual(set(get_func_args(self.A.fA2)), set(['x', 'y']))
 
     def test_class_regular_functions(self):
         """Test get_func_args on class regular functions."""
-        self.assertEqual(set(get_func_args(self.A.fA3)), set(["x", "y"]))
-        self.assertEqual(set(get_func_args(self.A.fA4)), set(["x", "y", "z"]))
+        self.assertEqual(set(get_func_args(self.A.fA3)), set(['x', 'y']))
+        self.assertEqual(set(get_func_args(self.A.fA4)), set(['x', 'y', 'z']))
 
     def test_class_methods(self):
         """Test get_func_args on class methods."""
         # When accessing classmethods through the class, 'cls' is already bound
-        self.assertEqual(set(get_func_args(self.A.fA5)), set(["x", "y"]))
-        self.assertEqual(set(get_func_args(self.A.fA6)), set(["x", "y", "z"]))
+        self.assertEqual(set(get_func_args(self.A.fA5)), set(['x', 'y']))
+        self.assertEqual(set(get_func_args(self.A.fA6)), set(['x', 'y', 'z']))
 
     def test_instance_methods(self):
         """Test get_func_args on instance methods."""
-        self.assertEqual(set(get_func_args(self.A.fA7)), set(["self", "x", "y"]))
-        self.assertEqual(set(get_func_args(self.A.fA8)), set(["self", "x", "y", "z"]))
+        self.assertEqual(set(get_func_args(self.A.fA7)), set(['self', 'x', 'y']))
+        self.assertEqual(set(get_func_args(self.A.fA8)), set(['self', 'x', 'y', 'z']))
 
     def test_instance_lambda_functions(self):
         """Test get_func_args on instance lambda functions."""
-        self.assertEqual(set(get_func_args(self.a1.f1)), set(["x", "y"]))
-        self.assertEqual(set(get_func_args(self.a1.f2)), set(["x", "y"]))
+        self.assertEqual(set(get_func_args(self.a1.f1)), set(['x', 'y']))
+        self.assertEqual(set(get_func_args(self.a1.f2)), set(['x', 'y']))
 
 
-if __name__ == "__main__":
+if __name__ == '__main__':
     unittest.main()

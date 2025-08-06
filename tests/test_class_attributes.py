@@ -126,111 +126,111 @@ class TestClassAttributes(unittest.TestCase):
     def test_get_inst_attrs_class_A(self):
         """Test get_inst_attrs on class A."""
         result = get_inst_attrs(self.A)
-        expected_keys = ["AI1", "AI2", "AI3", "AI4"]
+        expected_keys = ['AI1', 'AI2', 'AI3', 'AI4']
         self.assertTrue(tb.dic_has_only_keys(result, expected_keys))
 
     def test_get_ann_attrs_class_A(self):
         """Test get_ann_attrs on class A."""
         result = get_ann_attrs(self.A)
-        expected_keys = ["AA1", "AI1"]
+        expected_keys = ['AA1', 'AI1']
         self.assertTrue(tb.dic_has_only_keys(result, expected_keys))
 
     def test_get_all_attrs_class_A(self):
         """Test get_all_attrs on class A."""
         result = get_all_attrs(self.A)
-        expected_keys = ["AA1", "AI1", "AI2", "AI3", "AI4"]
+        expected_keys = ['AA1', 'AI1', 'AI2', 'AI3', 'AI4']
         self.assertTrue(tb.dic_has_only_keys(result, expected_keys))
 
     def test_get_inst_attrs_class_B(self):
         """Test get_inst_attrs on class B (inheritance)."""
         result = get_inst_attrs(self.B)
-        expected_keys = ["BI1", "BI2", "BI3", "BI4", "AI1", "AI2", "AI3", "AI4"]
+        expected_keys = ['BI1', 'BI2', 'BI3', 'BI4', 'AI1', 'AI2', 'AI3', 'AI4']
         self.assertTrue(tb.dic_has_only_keys(result, expected_keys))
 
     def test_get_ann_attrs_class_B(self):
         """Test get_ann_attrs on class B (inheritance)."""
         result = get_ann_attrs(self.B)
-        expected_keys = ["BA1", "BI1", "AA1", "AI1"]
+        expected_keys = ['BA1', 'BI1', 'AA1', 'AI1']
         self.assertTrue(tb.dic_has_only_keys(result, expected_keys))
 
     def test_get_all_attrs_class_B(self):
         """Test get_all_attrs on class B (inheritance)."""
         result = get_all_attrs(self.B)
         expected_keys = [
-            "BA1",
-            "AA1",
-            "BI1",
-            "BI2",
-            "BI3",
-            "BI4",
-            "AI1",
-            "AI2",
-            "AI3",
-            "AI4",
+            'BA1',
+            'AA1',
+            'BI1',
+            'BI2',
+            'BI3',
+            'BI4',
+            'AI1',
+            'AI2',
+            'AI3',
+            'AI4',
         ]
         self.assertTrue(tb.dic_has_only_keys(result, expected_keys))
 
     def test_get_inst_attrs_instance_a1(self):
         """Test get_inst_attrs on instance a1."""
         result = get_inst_attrs(self.a1)
-        expected_keys = ["ai1", "ai2", "ai3", "AI1", "AI2", "AI3", "AI4"]
+        expected_keys = ['ai1', 'ai2', 'ai3', 'AI1', 'AI2', 'AI3', 'AI4']
         self.assertTrue(tb.dic_has_only_keys(result, expected_keys))
 
     def test_get_ann_attrs_instance_a1(self):
         """Test get_ann_attrs on instance a1."""
         result = get_ann_attrs(self.a1)
-        expected_keys = ["AA1", "AI1"]
+        expected_keys = ['AA1', 'AI1']
         self.assertTrue(tb.dic_has_only_keys(result, expected_keys))
 
     def test_get_all_attrs_instance_a1(self):
         """Test get_all_attrs on instance a1."""
         result = get_all_attrs(self.a1)
-        expected_keys = ["AA1", "AI1", "ai1", "ai2", "ai3", "AI1", "AI2", "AI3", "AI4"]
+        expected_keys = ['AA1', 'AI1', 'ai1', 'ai2', 'ai3', 'AI1', 'AI2', 'AI3', 'AI4']
         self.assertTrue(tb.dic_has_only_keys(result, expected_keys))
 
     def test_get_inst_attrs_instance_b1(self):
         """Test get_inst_attrs on instance b1."""
         result = get_inst_attrs(self.b1)
         expected_keys = [
-            "bi1",
-            "bi2",
-            "bi3",
-            "BI1",
-            "BI2",
-            "BI3",
-            "BI4",
-            "AI1",
-            "AI2",
-            "AI3",
-            "AI4",
+            'bi1',
+            'bi2',
+            'bi3',
+            'BI1',
+            'BI2',
+            'BI3',
+            'BI4',
+            'AI1',
+            'AI2',
+            'AI3',
+            'AI4',
         ]
         self.assertTrue(tb.dic_has_only_keys(result, expected_keys))
 
     def test_get_ann_attrs_instance_b1(self):
         """Test get_ann_attrs on instance b1."""
         result = get_ann_attrs(self.b1)
-        expected_keys = ["BA1", "BI1", "AA1", "AI1"]
+        expected_keys = ['BA1', 'BI1', 'AA1', 'AI1']
         self.assertTrue(tb.dic_has_only_keys(result, expected_keys))
 
     def test_get_all_attrs_instance_b1(self):
         """Test get_all_attrs on instance b1."""
         result = get_all_attrs(self.b1)
         expected_keys = [
-            "BA1",
-            "BI1",
-            "AA1",
-            "AI1",
-            "bi1",
-            "bi2",
-            "bi3",
-            "BI1",
-            "BI2",
-            "BI3",
-            "BI4",
-            "AI1",
-            "AI2",
-            "AI3",
-            "AI4",
+            'BA1',
+            'BI1',
+            'AA1',
+            'AI1',
+            'bi1',
+            'bi2',
+            'bi3',
+            'BI1',
+            'BI2',
+            'BI3',
+            'BI4',
+            'AI1',
+            'AI2',
+            'AI3',
+            'AI4',
         ]
         self.assertTrue(tb.dic_has_only_keys(result, expected_keys))
 
@@ -238,41 +238,41 @@ class TestClassAttributes(unittest.TestCase):
         """Test get_inst_attrs on instance a2 with overridden attributes."""
         result = get_inst_attrs(self.a2)
         expected_keys = [
-            "AA1",
-            "AI1",
-            "AI2",
-            "AI3",
-            "AI4",
-            "AM1",
-            "AM2",
-            "AM3",
-            "AM4",
-            "AM5",
-            "AM6",
+            'AA1',
+            'AI1',
+            'AI2',
+            'AI3',
+            'AI4',
+            'AM1',
+            'AM2',
+            'AM3',
+            'AM4',
+            'AM5',
+            'AM6',
         ]
         self.assertTrue(tb.dic_has_only_keys(result, expected_keys))
 
     def test_get_ann_attrs_instance_a2(self):
         """Test get_ann_attrs on instance a2 with overridden attributes."""
         result = get_ann_attrs(self.a2)
-        expected_keys = ["AA1", "AI1"]
+        expected_keys = ['AA1', 'AI1']
         self.assertTrue(tb.dic_has_only_keys(result, expected_keys))
 
     def test_get_all_attrs_instance_a2(self):
         """Test get_all_attrs on instance a2 with overridden attributes."""
         result = get_all_attrs(self.a2)
         expected_keys = [
-            "AA1",
-            "AI1",
-            "AI2",
-            "AI3",
-            "AI4",
-            "AM1",
-            "AM2",
-            "AM3",
-            "AM4",
-            "AM5",
-            "AM6",
+            'AA1',
+            'AI1',
+            'AI2',
+            'AI3',
+            'AI4',
+            'AM1',
+            'AM2',
+            'AM3',
+            'AM4',
+            'AM5',
+            'AM6',
         ]
         self.assertTrue(tb.dic_has_only_keys(result, expected_keys))
 
@@ -280,66 +280,66 @@ class TestClassAttributes(unittest.TestCase):
         """Test get_inst_attrs on instance b2 with overridden attributes."""
         result = get_inst_attrs(self.b2)
         expected_keys = [
-            "BA1",
-            "BI1",
-            "BI2",
-            "BI3",
-            "BI4",
-            "BM1",
-            "BM2",
-            "BM3",
-            "BM4",
-            "BM5",
-            "BM6",
-            "AA1",
-            "AI1",
-            "AI2",
-            "AI3",
-            "AI4",
-            "AM1",
-            "AM2",
-            "AM3",
-            "AM4",
-            "AM5",
-            "AM6",
+            'BA1',
+            'BI1',
+            'BI2',
+            'BI3',
+            'BI4',
+            'BM1',
+            'BM2',
+            'BM3',
+            'BM4',
+            'BM5',
+            'BM6',
+            'AA1',
+            'AI1',
+            'AI2',
+            'AI3',
+            'AI4',
+            'AM1',
+            'AM2',
+            'AM3',
+            'AM4',
+            'AM5',
+            'AM6',
         ]
         self.assertTrue(tb.dic_has_only_keys(result, expected_keys))
 
     def test_get_ann_attrs_instance_b2(self):
         """Test get_ann_attrs on instance b2 with overridden attributes."""
         result = get_ann_attrs(self.b2)
-        expected_keys = ["BA1", "BI1", "AA1", "AI1"]
+        expected_keys = ['BA1', 'BI1', 'AA1', 'AI1']
         self.assertTrue(tb.dic_has_only_keys(result, expected_keys))
 
     def test_get_all_attrs_instance_b2(self):
         """Test get_all_attrs on instance b2 with overridden attributes."""
         result = get_all_attrs(self.b2)
         expected_keys = [
-            "BA1",
-            "BI1",
-            "BI2",
-            "BI3",
-            "BI4",
-            "BM1",
-            "BM2",
-            "BM3",
-            "BM4",
-            "BM5",
-            "BM6",
-            "AA1",
-            "AI1",
-            "AI2",
-            "AI3",
-            "AI4",
-            "AM1",
-            "AM2",
-            "AM3",
-            "AM4",
-            "AM5",
-            "AM6",
+            'BA1',
+            'BI1',
+            'BI2',
+            'BI3',
+            'BI4',
+            'BM1',
+            'BM2',
+            'BM3',
+            'BM4',
+            'BM5',
+            'BM6',
+            'AA1',
+            'AI1',
+            'AI2',
+            'AI3',
+            'AI4',
+            'AM1',
+            'AM2',
+            'AM3',
+            'AM4',
+            'AM5',
+            'AM6',
         ]
         self.assertTrue(tb.dic_has_only_keys(result, expected_keys))
 
 
-if __name__ == "__main__":
+if __name__ == '__main__':
     unittest.main()

@@ -19,7 +19,7 @@ from ..function_evaluation import eval_if_func
 
 
 class NpArrayCollection(
-    AttrClass, internal_attrs=["_loop_print_subdiv", "shape", "_dummy_array", "_arrays"]
+    AttrClass, internal_attrs=['_loop_print_subdiv', 'shape', '_dummy_array', '_arrays']
 ):
     """
     Collection class for managing multiple numpy arrays of the same shape.
@@ -55,7 +55,7 @@ class NpArrayCollection(
     @classmethod
     def from_dic(
         cls, array_dic: dict[str, Union[np.ndarray, list]]
-    ) -> "NpArrayCollection":
+    ) -> 'NpArrayCollection':
         """
         Construct instance based on dictionary of existing arrays of equal shape.
 
@@ -65,7 +65,7 @@ class NpArrayCollection(
         Returns:
             New NpArrayCollection instance with arrays from the dictionary
         """
-        log("Setting up data arrays.")
+        log('Setting up data arrays.')
 
         # Iterate until list or numpy array is found, use its shape.
         shape = (1,)
@@ -84,7 +84,7 @@ class NpArrayCollection(
             npa.add_array(array_name, arr, calculate=False)
 
         npa.calculate_all_data(silent=True)
-        log("Setup done!")
+        log('Setup done!')
         return npa
 
     def _make_empty_array(self, dtype: Optional[type] = None) -> np.ndarray:
@@ -116,9 +116,9 @@ class NpArrayCollection(
             # If array not already added.
             if attr_name not in self.get_arrays():
                 # If annotated attribute is numpy array, use the dtype of the array.
-                matches = re.findall(r"numpy\.([a-zA-Z]+)[0-9]+", str(attr_val))
+                matches = re.findall(r'numpy\.([a-zA-Z]+)[0-9]+', str(attr_val))
                 if len(matches) > 0:
-                    dtype = matches[0] + "_"
+                    dtype = matches[0] + '_'
 
                 # Else set dtype to the declared variable type.
                 else:
@@ -169,12 +169,12 @@ class NpArrayCollection(
         """
         max_chars = 5000  # Truncate string at max_chars characters.
         cls = self.__class__
-        string = f"<{cls.__qualname__} {id(self)}>\n\tshape: {self.shape}\n\tarrays: {list(self._arrays.keys())}"
+        string = f'<{cls.__qualname__} {id(self)}>\n\tshape: {self.shape}\n\tarrays: {list(self._arrays.keys())}'
         arrays = self.get_arrays().items()
         if arrays:
-            string += "\n" + "\n".join(str(array) for array in arrays)
+            string += '\n' + '\n'.join(str(array) for array in arrays)
         if len(string) > max_chars:
-            return string[:max_chars] + " (print truncated)"
+            return string[:max_chars] + ' (print truncated)'
         else:
             return string
 
@@ -210,7 +210,7 @@ class NpArrayCollection(
                 self._arrays[array_name] = self.get_attr(array_name)
             else:
                 raise Exception(
-                    f"Attempted to add array to NpArrayCollection of shape <{self.shape}>, but array <{array_name}> has shape <{arr.shape}>."
+                    f'Attempted to add array to NpArrayCollection of shape <{self.shape}>, but array <{array_name}> has shape <{arr.shape}>.'
                 )
         else:
             self.set_attribute(array_name, np.full(self.shape, arr))
@@ -257,8 +257,8 @@ class NpArrayCollection(
         Returns:
             String representation of all array values at the index
         """
-        string = "\n".join(
-            f"{arr_name}: {str(val)}" for arr_name, val in self.idx_to_dic(idx).items()
+        string = '\n'.join(
+            f'{arr_name}: {str(val)}' for arr_name, val in self.idx_to_dic(idx).items()
         )
         return string
 
@@ -328,10 +328,10 @@ class NpArrayCollection(
         Returns:
             Formatted string representation of the index
         """
-        idx_str = "("
+        idx_str = '('
         for idx_pos, idx_len in enumerate(self.shape):
-            idx_str += str(idx[idx_pos] + 1).rjust(len(str(idx_len))) + ", "
-        idx_str = idx_str[:-2] + ")"
+            idx_str += str(idx[idx_pos] + 1).rjust(len(str(idx_len))) + ', '
+        idx_str = idx_str[:-2] + ')'
         return idx_str
 
     def get_progress_from_idx(self, idx: tuple) -> float:
@@ -360,11 +360,11 @@ class NpArrayCollection(
             idx: Current index in the loop
         """
         if self.idx_is_edge(idx) or self.idx_is_special(idx):
-            tuple_string = self.idx_str(idx) + " of " + str(tuple(self.shape))
+            tuple_string = self.idx_str(idx) + ' of ' + str(tuple(self.shape))
             percent_str = (
-                "   ["
+                '   ['
                 + str(round(self.get_progress_from_idx(idx) * 100)).rjust(3)
-                + "%]"
+                + '%]'
             )
             log(tuple_string + percent_str)
 
@@ -426,7 +426,7 @@ class NpArrayCollection(
             silent: Whether to suppress progress messages
         """
         if not silent:
-            log("Calculating data.")
+            log('Calculating data.')
         array_dic = self.get_arrays()
 
         # Need N^2 passes to ensure evaluating all functions that are dependent on other functions having been evaluated.
@@ -435,4 +435,4 @@ class NpArrayCollection(
                 self.calculate_array(array_name)
 
         if not silent:
-            log("Calculation done!")
+            log('Calculation done!')

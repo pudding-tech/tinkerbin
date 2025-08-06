@@ -17,7 +17,7 @@ def get_local_datetime() -> str:
     Returns:
         Formatted datetime string in local timezone with UTC offset
     """
-    time_format = "%Y-%m-%d %H:%M:%S UTC%z(%Z)"
+    time_format = '%Y-%m-%d %H:%M:%S UTC%z(%Z)'
     string = datetime.now().astimezone().strftime(time_format)
     return string
 
@@ -29,6 +29,6 @@ def get_utc_datetime() -> str:
     Returns:
         Formatted datetime string in UTC timezone
     """
-    time_format = "%Y-%m-%d %H:%M:%S UTC"
+    time_format = '%Y-%m-%d %H:%M:%S UTC'
     string = datetime.utcnow().strftime(time_format)
     return string

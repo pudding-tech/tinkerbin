@@ -76,7 +76,7 @@ def repeating(lst: list[Any]) -> list[Any]:
     Returns:
         List that repeats its elements cyclically when accessed
     """
-    rep_lst_cls = ClassFactory("RepeatingList", list)
+    rep_lst_cls = ClassFactory('RepeatingList', list)
     rep_lst = rep_lst_cls(lst)
     rep_lst.lst = lst
     rep_lst.__class__.__getitem__ = lambda self, i: self.lst[i % len(self.lst)]

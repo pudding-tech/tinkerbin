@@ -21,9 +21,10 @@ except ImportError:
     # Fallback for development installations
     try:
         from importlib.metadata import version
-        __version__ = version("tinkerbin")
+
+        __version__ = version('tinkerbin')
     except ImportError:
-        __version__ = "unknown"
+        __version__ = 'unknown'
 
 # Import all public functions and classes from each module
 from .numpy_tools import *

@@ -30,7 +30,7 @@ def print_header(string: str) -> None:
     width = 31
     pad1 = max(int(math.floor((width - (len(string) + 3)) / 2.0)), 4)
     pad2 = max(width - (pad1 + len(string) + 3), 4)
-    log("=" * pad1 + " " + string + ": " + "=" * pad2)
+    log('=' * pad1 + ' ' + string + ': ' + '=' * pad2)
 
 
 def print_sys_info() -> None:
@@ -43,20 +43,20 @@ def print_sys_info() -> None:
     - Python version
     - Current time and script name
     """
-    print_header("System information")
-    log("Platform: " + platform.platform())
-    log("OS Version: " + platform.version())
-    log("Machine: " + platform.machine())
+    print_header('System information')
+    log('Platform: ' + platform.platform())
+    log('OS Version: ' + platform.version())
+    log('Machine: ' + platform.machine())
     log(
-        "Number of CPUs: "
+        'Number of CPUs: '
         + str(psutil.cpu_count())
-        + " ("
+        + ' ('
         + str(psutil.cpu_count(logical=False))
-        + " physical)"
+        + ' physical)'
     )
-    log("RAM: " + str(round(psutil.virtual_memory().total / (1024.0**3))) + " GB")
-    log("Python version: " + re.sub("\n", "", sys.version))
-    time_format = "%Y-%m-%d %H:%M:%S UTC%z(%Z)"
-    log("Time: " + datetime.now().astimezone().strftime(time_format))
-    log("Script: " + get_script_name(suffix=True))
+    log('RAM: ' + str(round(psutil.virtual_memory().total / (1024.0**3))) + ' GB')
+    log('Python version: ' + re.sub('\n', '', sys.version))
+    time_format = '%Y-%m-%d %H:%M:%S UTC%z(%Z)'
+    log('Time: ' + datetime.now().astimezone().strftime(time_format))
+    log('Script: ' + get_script_name(suffix=True))
     log()

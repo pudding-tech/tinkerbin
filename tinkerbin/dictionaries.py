@@ -74,7 +74,7 @@ def deepcopy_dic_except(
 def recursive_key_search(
     dic: dict[str, Any],
     search_key: str,
-    root_key: str = "",
+    root_key: str = '',
     searched_list: list[dict] = None,
 ) -> None:
     """
@@ -91,15 +91,15 @@ def recursive_key_search(
 
     for key, val in dic.items():
         if key == search_key:
-            if root_key == "":
+            if root_key == '':
                 log(key)
             else:
-                log(root_key + "/" + str(key))
+                log(root_key + '/' + str(key))
         if isinstance(val, dict) and val not in searched_list:
             searched_list.append(val)
             recursive_key_search(
                 val,
                 search_key,
-                root_key=root_key + "/" + str(key),
+                root_key=root_key + '/' + str(key),
                 searched_list=searched_list,
             )

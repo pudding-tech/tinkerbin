@@ -28,7 +28,7 @@ def get_inst_attrs(cls: Any, ignore_internal: bool = True) -> dict[str, Any]:
         if hasattr(cls, attr_name):
             # If ignore_internal, ignore attributes starting and ending with '__'
             if not ignore_internal or (
-                not attr_name.startswith("__") and not attr_name.endswith("__")
+                not attr_name.startswith('__') and not attr_name.endswith('__')
             ):
                 attr = getattr(cls, attr_name)
 
@@ -37,7 +37,7 @@ def get_inst_attrs(cls: Any, ignore_internal: bool = True) -> dict[str, Any]:
                     attr_dic[attr_name] = attr
 
                 # If lambda function, consider it an attribute.
-                elif hasattr(attr, "__name__") and attr.__name__ == "<lambda>":
+                elif hasattr(attr, '__name__') and attr.__name__ == '<lambda>':
                     attr_dic[attr_name] = attr
 
     return attr_dic
@@ -55,20 +55,20 @@ def get_ann_attrs(cls: Any, ignore_internal: bool = True) -> dict[str, Any]:
         Dictionary containing annotated attribute names and types
     """
     ann_attr_dic = {}
-    if hasattr(cls, "__annotations__"):
+    if hasattr(cls, '__annotations__'):
         all_ann_attr_dic = cls.__annotations__
         for attr_name, attr_val in all_ann_attr_dic.items():
             # If ignore_internal, ignore attributes starting and ending with '__'
             if not (ignore_internal) or not (
-                attr_name.startswith("__") and attr_name[0].endswith("__")
+                attr_name.startswith('__') and attr_name[0].endswith('__')
             ):
                 ann_attr_dic[attr_name] = attr_val
 
     # Annotated attributes of parent classes are not directly accessible, so get them recursively.
     parents = ()
-    if hasattr(cls, "__bases__"):
+    if hasattr(cls, '__bases__'):
         parents = cls.__bases__
-    elif hasattr(cls, "__class__") and hasattr(cls.__class__, "__bases__"):
+    elif hasattr(cls, '__class__') and hasattr(cls.__class__, '__bases__'):
         parents = cls.__class__.__bases__
     for parent in parents:
         if parent is not object:

@@ -14,7 +14,7 @@ from .array_collection import NpArrayCollection
 from ..logging import log
 
 
-class NpMeshCollection(NpArrayCollection, internal_attrs=["_mesh_array_names"]):
+class NpMeshCollection(NpArrayCollection, internal_attrs=['_mesh_array_names']):
     """
     Class that stores meshgrid of independent variables and corresponding arrays of dependent variables.
 
@@ -71,7 +71,7 @@ class NpMeshCollection(NpArrayCollection, internal_attrs=["_mesh_array_names"]):
     @classmethod
     def mesh_from_dic(
         cls, array_dic: dict[str, Union[np.ndarray, list]]
-    ) -> "NpMeshCollection":
+    ) -> 'NpMeshCollection':
         """
         Construct instance by making meshgrid of arrays in dictionary.
 
@@ -81,9 +81,9 @@ class NpMeshCollection(NpArrayCollection, internal_attrs=["_mesh_array_names"]):
         Returns:
             New NpMeshCollection instance with meshgrid arrays
         """
-        log("Setting up data arrays.")
+        log('Setting up data arrays.')
         arr_list = list(array_dic.values())
-        mesh_list = np.meshgrid(*arr_list, indexing="ij")
+        mesh_list = np.meshgrid(*arr_list, indexing='ij')
         some_arr = mesh_list[0]
         npm = cls(some_arr.shape)
         npm._mesh_array_names = []
@@ -91,7 +91,7 @@ class NpMeshCollection(NpArrayCollection, internal_attrs=["_mesh_array_names"]):
             npm.add_array(arr_name, mesh_list[i])
             npm._mesh_array_names.append(arr_name)
         npm.calculate_all_data(silent=True)
-        log("Setup done!")
+        log('Setup done!')
         return npm
 
     def __repr__(self) -> str:
@@ -103,12 +103,12 @@ class NpMeshCollection(NpArrayCollection, internal_attrs=["_mesh_array_names"]):
         """
         max_chars = 5000  # Truncate string at max_chars characters.
         cls = self.__class__
-        string = f"<{cls.__qualname__} {id(self)}>\n\tshape: {self.shape}\n\tmesh variables: {list(self.get_indep_arrays().keys())}\n\tdependent variables: {list(self.get_depend_arrays().keys())}"
+        string = f'<{cls.__qualname__} {id(self)}>\n\tshape: {self.shape}\n\tmesh variables: {list(self.get_indep_arrays().keys())}\n\tdependent variables: {list(self.get_depend_arrays().keys())}'
         arrays = self.get_arrays().items()
         if arrays:
-            string += "\n" + "\n".join(str(array) for array in arrays)
+            string += '\n' + '\n'.join(str(array) for array in arrays)
         if len(string) > max_chars:
-            return string[:max_chars] + " (print truncated)"
+            return string[:max_chars] + ' (print truncated)'
         else:
             return string
 

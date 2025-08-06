@@ -17,18 +17,18 @@ _folders_were_created: bool = False  # Keep track of whether folders have been c
 _transliterate_special: dict[
     str, str
 ] = {  # Character transliteration rules when converting string to filename.
-    "&": "and",
-    "@": "at",
-    r"{+": r"{",
-    r"}+": r"}",
-    r"\\langle": "<",
-    r"\\rangle": ">",
-    r"\\mathrm": "",
-    r"\|([\w\-_\\]*)\|": r"Abs{\1}",
-    r"\\ket{([\w\-_\\]*)}": r"\1",
-    r"_{([\w\-_\\]*)}": r"_\1",
-    r"\^{([\w\-_\\]*)}": r"\^\1",
-    r"\\omega": "w",
+    '&': 'and',
+    '@': 'at',
+    r'{+': r'{',
+    r'}+': r'}',
+    r'\\langle': '<',
+    r'\\rangle': '>',
+    r'\\mathrm': '',
+    r'\|([\w\-_\\]*)\|': r'Abs{\1}',
+    r'\\ket{([\w\-_\\]*)}': r'\1',
+    r'_{([\w\-_\\]*)}': r'_\1',
+    r'\^{([\w\-_\\]*)}': r'\^\1',
+    r'\\omega': 'w',
 }
 
 
@@ -44,7 +44,7 @@ class PathDic:
     _key_tuples: dict  # Dictionary of keys to <_dic>.
 
     def __init__(
-        self, dic_or_lst: Union[dict, list] = None, root_path: str = ""
+        self, dic_or_lst: Union[dict, list] = None, root_path: str = ''
     ) -> None:
         """
         Initialize with list or dictionary of sub folders and root path.
@@ -69,7 +69,7 @@ class PathDic:
                 self._dic[name_tuple] = None
             self._key_tuples[name_tuple[0]] = name_tuple
 
-    def __getitem__(self, key: str) -> "PathDic":
+    def __getitem__(self, key: str) -> 'PathDic':
         """
         Subscript as dictionary.
 
@@ -84,14 +84,14 @@ class PathDic:
         """
         if key not in self._key_tuples:
             raise Exception(
-                "Attempted to find folder <"
+                'Attempted to find folder <'
                 + str(key)
-                + ">, but no such folder exists."
+                + '>, but no such folder exists.'
             )
         key_tuple = self._key_tuples[key]
-        path = self.path + "/" + str(key_tuple[1])
-        simplified_path = re.sub(r"\/\.$", "", path)
-        simplified_path = re.sub(r"\/\.\/", "/", simplified_path)
+        path = self.path + '/' + str(key_tuple[1])
+        simplified_path = re.sub(r'\/\.$', '', path)
+        simplified_path = re.sub(r'\/\.\/', '/', simplified_path)
         return PathDic(self._dic[key_tuple], simplified_path)
 
     def keys(self) -> dict.keys:
@@ -103,7 +103,7 @@ class PathDic:
         """
         return self._key_tuples.keys()
 
-    def iter_sub_paths(self) -> "PathDic":
+    def iter_sub_paths(self) -> 'PathDic':
         """
         Iterate over subfolders.
 
@@ -113,7 +113,7 @@ class PathDic:
         for key in self.keys():
             yield self[key]
 
-    def sub_paths(self) -> list["PathDic"]:
+    def sub_paths(self) -> list['PathDic']:
         """
         Get list of sub folder paths.
 
@@ -158,21 +158,21 @@ def to_filename(
     string = unidecode(string)
 
     # Remove simple specials characters without substituting underscore.
-    string = re.sub(r'(\\|"|!|\?|--|\$)+', "", string)
+    string = re.sub(r'(\\|"|!|\?|--|\$)+', '', string)
 
     # Substitute everything except alphanumerics, dash, underscore, and other allowed_chars for underscore.
-    sub_pattern = r"[^\w\d_\-"
+    sub_pattern = r'[^\w\d_\-'
     for char in allowed_chars:
         sub_pattern += char
-    sub_pattern += r"]+"
-    string = re.sub(sub_pattern, "_", string)
+    sub_pattern += r']+'
+    string = re.sub(sub_pattern, '_', string)
 
     # Remove leading and trailing underscores.
-    string = re.sub(r"^_+", "", string)
-    string = re.sub(r"_+$", "", string)
+    string = re.sub(r'^_+', '', string)
+    string = re.sub(r'_+$', '', string)
 
     # Remove repeated special characters.
-    string = re.sub(r"([^A-Za-z\d])\1{1,}", r"\1", string)
+    string = re.sub(r'([^A-Za-z\d])\1{1,}', r'\1', string)
 
     # Convert to lower case, unless told not to.
     if to_lower:
@@ -191,7 +191,7 @@ def to_ascii(string: str) -> str:
     Returns:
         ASCII-only version of the string
     """
-    return string.encode("ascii", errors="ignore").decode()
+    return string.encode('ascii', errors='ignore').decode()
 
 
 def make_folders(folder_paths: list[str], print_nl: bool = False) -> None:
@@ -209,7 +209,7 @@ def make_folders(folder_paths: list[str], print_nl: bool = False) -> None:
         _folders_were_created = False
     for path in folder_paths:
         if not Path(path).is_dir():
-            log(f"Making folder: <{path}>.")
+            log(f'Making folder: <{path}>.')
             Path(path).mkdir(parents=True, exist_ok=True)
             _folders_were_created = True
     if print_nl and _folders_were_created:

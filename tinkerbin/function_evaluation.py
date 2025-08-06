@@ -133,7 +133,7 @@ def arg_process(
             found = True
 
     if needed and not found:
-        raise Exception(f"Missing {arg_name}!")
+        raise Exception(f'Missing {arg_name}!')
 
     if not found or kw[arg_name] is None:
         kw[arg_name] = default_val_f(kw)

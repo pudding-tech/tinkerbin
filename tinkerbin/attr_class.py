@@ -20,7 +20,7 @@ class AttrClass:
     """
 
     _internal_attributes: set[str] = {
-        "_internal_attributes"
+        '_internal_attributes'
     }  # Set of attributes to be ignored when getting list of attributes.
 
     @classmethod
@@ -47,7 +47,7 @@ class AttrClass:
             cls._internal_attributes.add(attr)
 
     @classmethod
-    def from_dic(cls, attr_dic: dict[str, Any]) -> "AttrClass":
+    def from_dic(cls, attr_dic: dict[str, Any]) -> 'AttrClass':
         """
         Construct an instance with attributes from dictionary.
 
@@ -233,9 +233,9 @@ class AttrClass:
         """
         max_chars = 5000  # Truncate string at max_chars characters.
         cls = self.__class__
-        string = f"<{cls.__qualname__} {id(self)}: {self.get_inst_attrs()}>"
+        string = f'<{cls.__qualname__} {id(self)}: {self.get_inst_attrs()}>'
         if len(string) > max_chars:
-            return string[:max_chars] + " (print truncated)"
+            return string[:max_chars] + ' (print truncated)'
         else:
             return string
 

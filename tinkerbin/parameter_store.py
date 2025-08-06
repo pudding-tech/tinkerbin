@@ -49,7 +49,7 @@ def add_after_vars(glob: dict[str, Any]) -> None:
     global _declared_parameters
 
     if _before_parameter_names is None:
-        raise Exception("Attempted to set after vars, but before vars were not set.")
+        raise Exception('Attempted to set after vars, but before vars were not set.')
 
     if _declared_parameters is None:
         _declared_parameters = {}
@@ -59,7 +59,7 @@ def add_after_vars(glob: dict[str, Any]) -> None:
         declared_var_names = [
             var_name
             for var_name in glob.keys()
-            if var_name not in _before_parameter_names + ["_before_var_names"]
+            if var_name not in _before_parameter_names + ['_before_var_names']
         ]
         for var_name in declared_var_names:
             _declared_parameters[var_name] = glob[var_name]
@@ -82,7 +82,7 @@ def print_defined_vars() -> None:
 
     if _declared_parameters is None:
         raise Exception(
-            "Attempted to print defined variables, but after vars were not set."
+            'Attempted to print defined variables, but after vars were not set.'
         )
 
     # If IPython notebook, lock parameters saving variables so that rerunning the code prints the same.
@@ -90,11 +90,11 @@ def print_defined_vars() -> None:
         _lock_parameter_vars = True
 
     # Print parameters.
-    print_header("Parameters")
+    print_header('Parameters')
     log(
-        "\n".join(
+        '\n'.join(
             [
-                var_name + ": " + str(_declared_parameters[var_name])
+                var_name + ': ' + str(_declared_parameters[var_name])
                 for var_name in _declared_parameters.keys()
             ]
         )

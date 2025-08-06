@@ -22,11 +22,11 @@ class TestNumpyTools(unittest.TestCase):
         """Set up test data for slice testing."""
         # Create test dictionary similar to the original test
         self.dic = {
-            "a": [1, 2],
-            "b": [10, 11, 12],
-            "c": [20, 21, 22],
-            "d": [30, 31, 32],
-            "e": [40, 41],
+            'a': [1, 2],
+            'b': [10, 11, 12],
+            'c': [20, 21, 22],
+            'd': [30, 31, 32],
+            'e': [40, 41],
         }
         self.npm = NpMeshCollection.mesh_from_dic(self.dic)
 
@@ -34,7 +34,7 @@ class TestNumpyTools(unittest.TestCase):
         """Test basic slice iterator functionality."""
         # Test that slice_iterator returns an iterator
         iterator = self.npm.slice_iterator(
-            ["a"], synced_axes={"b": "c", "d": "c"}, fixed_axes={"e": 1}
+            ['a'], synced_axes={'b': 'c', 'd': 'c'}, fixed_axes={'e': 1}
         )
 
         # Collect all indices from the iterator
@@ -50,7 +50,7 @@ class TestNumpyTools(unittest.TestCase):
     def test_slice_iterator_with_synced_axes(self):
         """Test slice iterator with synced axes."""
         iterator = self.npm.slice_iterator(
-            ["a"], synced_axes={"b": "c", "d": "c"}, fixed_axes={"e": 1}
+            ['a'], synced_axes={'b': 'c', 'd': 'c'}, fixed_axes={'e': 1}
         )
         indices = list(iterator)
 
@@ -64,7 +64,7 @@ class TestNumpyTools(unittest.TestCase):
 
     def test_slice_iterator_with_fixed_axes(self):
         """Test slice iterator with fixed axes."""
-        iterator = self.npm.slice_iterator(["a"], fixed_axes={"e": 1})
+        iterator = self.npm.slice_iterator(['a'], fixed_axes={'e': 1})
         indices = list(iterator)
 
         # Should have some valid indices
@@ -77,7 +77,7 @@ class TestNumpyTools(unittest.TestCase):
     def test_slice_iterator_single_axis(self):
         """Test slice iterator with single axis as string."""
         # Test that string input is converted to list
-        iterator = self.npm.slice_iterator("a", fixed_axes={"e": 1})
+        iterator = self.npm.slice_iterator('a', fixed_axes={'e': 1})
         indices = list(iterator)
 
         # Should have some valid indices
@@ -112,5 +112,5 @@ class TestNumpyTools(unittest.TestCase):
         self.assertEqual(len(depend_arrays), 0)
 
 
-if __name__ == "__main__":
+if __name__ == '__main__':
     unittest.main()
