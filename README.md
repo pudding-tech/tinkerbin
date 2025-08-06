@@ -1,8 +1,9 @@
-<p align="center">
-    <img src="assets/TinkerBin-no-bg.png" width="300" title="TinkerBin Logo">
-</p>
+<div align="center">
+    <img src="assets/TinkerBin-no-bg.png" width="220" title="TinkerBin Logo">
+</div>
 
 # Tinkerbin
+[![tests](https://github.com/pudding-tech/tinkerbin/actions/workflows/tests.yml/badge.svg)](https://github.com/pudding-tech/tinkerbin/actions/workflows/tests.yml)
 
 A collection of utility tools for scientific computing and data analysis, designed to streamline numerical simulations, data processing, and visualization workflows.
 
