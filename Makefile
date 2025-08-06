@@ -4,7 +4,7 @@
 
 
 #===================== Categories =======================
-.phony: all install venv_create
+.phony: all install venv_create test
 
 
 #===================== Variables ========================
@@ -17,6 +17,8 @@ install:
 	pip install -e .
 
 venv_create:
-	pyenv local 3.10
+	pyenv local 3.12
 	python -m venv .venv
 
+test:
+	python -m unittest discover tests/
